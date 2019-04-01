@@ -1,0 +1,24 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script type="text/javascript" src="Scripts/logout.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script  type="text/javascript"> 
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+
+        window.onunload = function () { null }
+        alert('User Logged out');
+       
+      
+    </script>
+</head>
+<body>
+    <div ng-app="Myapp" ng-controller="Mycontroller">
+
+    </div>
+</body>
+</html>

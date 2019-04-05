@@ -44,7 +44,7 @@
                     <h2 class="form-login-heading">Access Code Verification</h2>
                     <div class="login-wrap">
                         <input type="text" class="form-control" name="otp" placeholder="Enter 4 digit Access Code" ng-model="otpno" pattern="[0-9]{4}" autofocus>
-                        <span ng-show="myForm.otp.$error.pattern" style="color:red;">Enter your Access Code received in your Inbox!</span>
+                        <span ng-show="myForm.otp.$error.pattern" style="color:red;">Enter your Access Code received on your Schaeffler Email inbox without closing the App.!</span>
                         <span ng-show="myForm.otp.$touched && myForm.otp.$invalid" style="color:red;">Required Field</span>
                         <br />
                         <input type="button" class="btn btn-theme btn-block" value="Verify" ng-click="VerifyOTP()" />

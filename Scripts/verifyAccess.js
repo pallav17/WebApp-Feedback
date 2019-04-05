@@ -2,7 +2,7 @@
 myapp.controller("Mycontroller", function ($scope, $http, $window) {
     $scope.VerifyOTP = function () {
         if ($scope.otpno == undefined)
-            alert('Please Enter 4 digit OTP Number')
+            alert('Please Enter 4 digit Access code received on your Schaeffler Email. ')
         else {
             $http({
                 method: 'POST',
@@ -19,7 +19,7 @@ myapp.controller("Mycontroller", function ($scope, $http, $window) {
                     $window.location.href = 'login.html';
                 }
                 else {
-                    alert("Please,Enter Correct OTP Number");
+                    alert("Invalid. Please enter Correct Access Code");
                     $scope.otpno = "";
                 }
             })

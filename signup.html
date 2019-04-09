@@ -1,130 +1,219 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 
+
+
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
     <title>Schaeffler Group North America</title>
-
+   
     <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
+   <link href="img/favicon.png" rel="icon">
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
     <!-- Bootstrap core CSS -->
+
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <!--external css-->
+
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
     <script type="text/javascript" src="Scripts/signup.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
     <!-- =======================================================
+
       Template Name: Dashio
+
       Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+
       Author: TemplateMag.com
+
       License: https://templatemag.com/license/
+
     ======================================================= -->
+
 </head>
 
+
+
 <body>
-
     <!-- **********************************************************************************************************************************************************
+
         MAIN CONTENT
+
         *********************************************************************************************************************************************************** -->
-    <div ng-app="MyApp" ng-controller="MyController">
-        <div id="login-page">
+
+ <div ng-app="MyApp" ng-controller="MyController">
+      <div id="login-page">
             <div class="container">
+
                 <form class="form-login" name="myForm">
+
                     <h2 class="form-login-heading">Register an Account</h2>
+
                     <div class="login-wrap">
+
                         <input type="text" class="form-control" placeholder="First name" name="name" ng-model="FName" autofocus pattern="[a-zA-Z]+" required />
-
                         <span ng-show="myForm.name.$error.pattern" style="color:red;">Not a valid Name!</span>
+
                         <span ng-show="myForm.name.$touched && myForm.name.$invalid" style="color:red;">required Field.</span>
+                        <br />
+
+                        <input type="text" class="form-control" placeholder="Last name" name="lname" ng-model="LName" pattern="[a-zA-z]+" required />
+
+                        <span ng-show="myForm.lname.$error.pattern" style="color:red;">Not a valid Last Name!</span>
+
+                        <span ng-show="myForm.lname.$touched && myForm.lname.$invalid" style="color:red;">required Field.</span>
 
                         <br />
-                        <input type="text" class="form-control" placeholder="Last name" name="lname" ng-model="LName" pattern="[a-zA-z]+" required />
-                        <span ng-show="myForm.lname.$error.pattern" style="color:red;">Not a valid Last Name!</span>
-                        <span ng-show="myForm.lname.$touched && myForm.lname.$invalid" style="color:red;">required Field.</span>
-                        <br />
+
                         <input type="text" class="form-control" name="office" placeholder="Office Location" ng-model="office" pattern="[a-zA-z ]+" required />
+
                         <span ng-show="myForm.office.$error.pattern" style="color:red;">Not a valid Office Location!</span>
+
                         <span ng-show="myForm.office.$touched && myForm.office.$invalid" style="color:red;">required Field.</span>
+
                         <br />
+
                         <!--<input type="text" style="width:150px; height:33px" placeholder="Email address" name="myemail" ng-model="email" pattern="[a-z0-9._%+-]+" required />@schaeffler.com-->
+
                         <input type="text" class="form-control" placeholder="Email address" name="myemail" ng-model="email" pattern="^[A-Za-z0-9]+(.|_)+[A-Za-z0-9]+@+schaeffler.com$" required />
 
+
+
                         <span ng-show="myForm.myemail.$error.pattern" style="color:red;">Not a valid Domain. Only Schaeffler Email Id's allowed.</span>
+
                         <span ng-show="myForm.myemail.$touched && myForm.myemail.$invalid" style="color:red;">required Field.</span>
+
                         <br />
+
                         <br />
+
+
 
                         <input type="password" class="form-control" name="password" placeholder="Password" ng-model="password" pattern="[A-Z]{1}[A-Za-z0-9\W]{7,}" required>
+
                         <span ng-show="myForm.password.$error.pattern" style="color:red;">Must contain  First character in Uppercase and at least 8 or more other characters</span>
+
                         <span ng-show="myForm.password.$touched && myForm.password.$invalid" style="color:red;">required Field.</span>
-                        <br />
-                        <input type="password" class="form-control" name="cpassword" placeholder="Confirm password" ng-model="cpassword" pattern="[A-Z]{1}[A-Za-z0-9\W]{7,}" required>
-                        <span ng-show="myForm.cpassword.$error.pattern" style="color:red;">Must contain  First character in Uppercase and  at least 8 or more other characters</span>
-                        <span ng-show="myForm.cpassword.$touched && myForm.cpassword.$invalid" style="color:red;">required Field.</span>
+
                         <br />
 
-                        <input type="text" class="form-control" name="phone" placeholder="Phone No.(Optional)" ng-model="phone"  />
+                        <input type="password" class="form-control" name="cpassword" placeholder="Confirm password" ng-model="cpassword" pattern="[A-Z]{1}[A-Za-z0-9\W]{7,}" required>
+
+                        <span ng-show="myForm.cpassword.$error.pattern" style="color:red;">Must contain  First character in Uppercase and  at least 8 or more other characters</span>
+
+                        <span ng-show="myForm.cpassword.$touched && myForm.cpassword.$invalid" style="color:red;">required Field.</span>
+
+                        <br />
+
+
+
+                        <input type="text" class="form-control" name="phone" placeholder="Phone No.(Optional)" ng-model="phone" />
+
                         <!--<input type="text" class="form-control" name="phone" placeholder="Phone No" ng-model="phone" pattern="[0-9]{10}" required />-->
                         <!--<span ng-show="myForm.phone.$error.pattern" style="color:red;">Not a valid Phone No!</span>
-    <span ng-show="myForm.phone.$touched && myForm.phone.$invalid" style="color:red;">required Field.</span>-->
+
+                        <span ng-show="myForm.phone.$touched && myForm.phone.$invalid" style="color:red;">required Field.</span>-->
+
                         <br />
+
                         <input type="button" class="btn btn-theme btn-block" value="Register User" ng-click="Save()" />
 
                         <hr>
-
                         <div class="registration">
+
                             All ready Registered then
                             <a class="" href="login.html">
+
                                 Login
+
                             </a>
                         </div>
                     </div>
+
                     <!-- Modal -->
+
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+
                         <div class="modal-dialog">
+
                             <div class="modal-content">
+
                                 <div class="modal-header">
+
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
                                     <h4 class="modal-title">Forgot Password ?</h4>
+
                                 </div>
+
                                 <div class="modal-body">
+
                                     <p>Enter your E-mail address below to reset your Password.</p>
+
                                     <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
                                 </div>
+
                                 <div class="modal-footer">
+
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+
                                     <button class="btn btn-theme" type="button" ng-Click="ForgotData">Submit</button>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                     <!-- modal -->
+
                 </form>
+
                 <h1>{{myForm.myemail.$valid}}</h1>
+
             </div>
+
         </div>
+
     </div>
+
     <!-- js placed at the end of the document so the pages load faster -->
+
     <script src="lib/jquery/jquery.min.js"></script>
+
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
     <!--BACKSTRETCH-->
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
     <!--<script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
+
     <script>
+
         $.backstretch("", {
+
           speed: 500
+
       });
+
     </script>-->
+
 </body>
 
 </html>

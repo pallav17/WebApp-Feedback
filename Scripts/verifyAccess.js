@@ -15,8 +15,10 @@ myapp.controller("Mycontroller", function ($scope, $http, $window) {
 
             }).then(function (response) {
                 if (response.data.d > 0) {
+
                     alert("Verified Successfully.");
                     $window.location.href = 'login.html';
+                    
                 }
                 else {
                     alert("Invalid. Please enter Correct Access Code");

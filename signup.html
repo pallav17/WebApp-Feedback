@@ -68,14 +68,14 @@
                         <input type="text" class="form-control" placeholder="First name" name="name" ng-model="FName" autofocus pattern="[a-zA-Z]+" required />
                         <span ng-show="myForm.name.$error.pattern" style="color:red;">Not a valid Name!</span>
 
-                        <span ng-show="myForm.name.$touched && myForm.name.$invalid" style="color:red;">required Field.</span>
+                        <span ng-show="myForm.name.$touched && myForm.name.$invalid" style="color:red;">Required Field.</span>
                         <br />
 
                         <input type="text" class="form-control" placeholder="Last name" name="lname" ng-model="LName" pattern="[a-zA-z]+" required />
 
                         <span ng-show="myForm.lname.$error.pattern" style="color:red;">Not a valid Last Name!</span>
 
-                        <span ng-show="myForm.lname.$touched && myForm.lname.$invalid" style="color:red;">required Field.</span>
+                        <span ng-show="myForm.lname.$touched && myForm.lname.$invalid" style="color:red;">Required Field.</span>
 
                         <br />
 
@@ -83,7 +83,7 @@
 
                         <span ng-show="myForm.office.$error.pattern" style="color:red;">Not a valid Office Location!</span>
 
-                        <span ng-show="myForm.office.$touched && myForm.office.$invalid" style="color:red;">required Field.</span>
+                        <span ng-show="myForm.office.$touched && myForm.office.$invalid" style="color:red;">Required Field.</span>
 
                         <br />
 
@@ -95,19 +95,19 @@
 
                         <span ng-show="myForm.myemail.$error.pattern" style="color:red;">Not a valid Domain. Only Schaeffler Email Id's allowed.</span>
 
-                        <span ng-show="myForm.myemail.$touched && myForm.myemail.$invalid" style="color:red;">required Field.</span>
+                        <span ng-show="myForm.myemail.$touched && myForm.myemail.$invalid" style="color:red;">Required Field.</span>
+                  
 
                         <br />
 
-                        <br /> 
-
+              
 
 
                         <input type="password" class="form-control" name="password" placeholder="Password" ng-model="password" pattern="[A-Z]{1}[A-Za-z0-9\W]{7,}" required>
 
                         <span ng-show="myForm.password.$error.pattern" style="color:red;">Must contain  First character in Uppercase and at least 8 or more other characters</span>
 
-                        <span ng-show="myForm.password.$touched && myForm.password.$invalid" style="color:red;">required Field.</span>
+                        <span ng-show="myForm.password.$touched && myForm.password.$invalid" style="color:red;">Required Field.</span>
 
                         <br />
 
@@ -115,13 +115,11 @@
 
                         <span ng-show="myForm.cpassword.$error.pattern" style="color:red;">Must contain  First character in Uppercase and  at least 8 or more other characters</span>
 
-                        <span ng-show="myForm.cpassword.$touched && myForm.cpassword.$invalid" style="color:red;">required Field.</span>
+                        <span ng-show="myForm.cpassword.$touched && myForm.cpassword.$invalid" style="color:red;">Required Field.</span>
 
                         <br />
-
-
-
-                        <input type="text" class="form-control" name="phone" placeholder="Phone No.(Optional)" ng-model="phone" />
+             
+                        <!--<input type="text" class="form-control" name="phone" placeholder="Phone No.(Optional)" ng-model="phone" />-->
 
                         <!--<input type="text" class="form-control" name="phone" placeholder="Phone No" ng-model="phone" pattern="[0-9]{10}" required />-->
                         <!--<span ng-show="myForm.phone.$error.pattern" style="color:red;">Not a valid Phone No!</span>
@@ -131,6 +129,7 @@
                         <br />
 
                         <input type="button" class="btn btn-theme btn-block" value="Register User" ng-click="Save()" />
+                        
 
                         <hr>
                         <div class="registration">
@@ -183,7 +182,7 @@
                     </div>
 
                     <!-- modal -->
-
+                   
                 </form>
 
                 <!--<h1>{{myForm.myemail.$valid}}</h1>-->
@@ -217,3 +216,4 @@
 </body>
 
 </html>
+

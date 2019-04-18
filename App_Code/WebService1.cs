@@ -107,7 +107,7 @@ namespace Official
 
 
         [WebMethod(EnableSession = true)]
-        public Boolean InsertFeedbackDataNew(string Subject, string Recepient_Email, string pr, string nr, string Email, int Rating)
+        public Boolean InsertFeedbackDataNew(string Subject, string Recepient_Email, string Description, string Suggestion, string Email, int Rating)
         {
 
             // string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
@@ -125,7 +125,7 @@ namespace Official
                 //{
                 //    con.Close();
                 con.Open();
-                string Description = pr + " Improvement:    " + nr;
+               // string Description = pr + " Improvement:    " + nr;
                 cmd = new SqlCommand("insert into tblFeedback(Subject, Recepient_Email,Description,Rating,Email)values(@Subject,@Recepient_Email,@Description,@Rating,@Email)", con);
                 cmd.Parameters.AddWithValue("@Subject", Subject);
                 cmd.Parameters.AddWithValue("@Recepient_Email", Recepient_Email);
@@ -262,7 +262,7 @@ namespace Official
 
 
         [WebMethod]
-        public Boolean InsertUserData(string FirstName, string LastName, string Office, string Email, string Password, string PhoneNo, Boolean IsActive, Boolean IsDelete)
+        public Boolean InsertUserData(string FirstName, string LastName, string Office, string Email, string Password, Boolean IsActive, Boolean IsDelete)
         {
           //  string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
             using (SqlConnection con = new SqlConnection(connectionstring))
@@ -298,13 +298,17 @@ namespace Official
                     }
                     con.Close();
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("insert into tblUser(FirstName,LastName,Office,Email,Password,PhoneNo,OtpNo,IsActive,IsDelete)values(@FirstName,@LastName,@Office,@Email,@Password,@PhoneNo,'" + AccessOtp.ToString() + "',@IsActive,@IsDelete)", con);
+                   
+                    
+                    //SqlCommand cmd = new SqlCommand("insert into tblUser(FirstName,LastName,Office,Email,Password,PhoneNo,OtpNo,IsActive,IsDelete)values(@FirstName,@LastName,@Office,@Email,@Password,@PhoneNo,'" + AccessOtp.ToString() + "',@IsActive,@IsDelete)", con);
+                    SqlCommand cmd = new SqlCommand("insert into tblUser(FirstName,LastName,Office,Email,Password,OtpNo,IsActive,IsDelete)values(@FirstName,@LastName,@Office,@Email,@Password,'" + AccessOtp.ToString() + "',@IsActive,@IsDelete)", con);
+
                     cmd.Parameters.AddWithValue("@FirstName", FirstName);
                     cmd.Parameters.AddWithValue("@LastName", LastName);
                     cmd.Parameters.AddWithValue("@Office", Office);
                     cmd.Parameters.AddWithValue("@Email", Email);
                     cmd.Parameters.AddWithValue("@Password", Password);
-                    cmd.Parameters.AddWithValue("@PhoneNo", PhoneNo);
+                    //cmd.Parameters.AddWithValue("@PhoneNo", PhoneNo);
                     cmd.Parameters.AddWithValue("@IsActive", IsActive);
                     cmd.Parameters.AddWithValue("@IsDelete", IsDelete);
                     int j = 0;
@@ -452,6 +456,7 @@ namespace Official
                         smtp.Send(mm);
                         //WriteToFile("Email sent successfully to: " + name1 + " " + email1);
                     }
+                    
                     SqlCommand cmd3 = new SqlCommand("update tblUser set OtpNo='" + AccessOtp + "' where Email=@Email2", con);
                     cmd3.Parameters.AddWithValue("@Email2", Email);
 

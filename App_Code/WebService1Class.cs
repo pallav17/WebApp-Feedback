@@ -25,6 +25,7 @@ namespace Official
         public string Time { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
+        public string Suggestion { get; set; }
         public string Subject { get; set; }
         public string CreatedDate { get; set; }
         public int Rating { get; set; }

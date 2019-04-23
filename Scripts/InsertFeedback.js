@@ -51,7 +51,7 @@ starApp.controller('StarCtrl', ['$scope', '$http', '$window', function ($scope, 
                     'dataType': 'json'
                 },
 
-                data: { Subject: $scope.subject, Recepient_Email: $scope.myEmployee, pr: $scope.pr, nr: $scope.nr, Email: $scope.name, Rating: $scope.ratings[0].current }
+                data: { Subject: $scope.subject, Recepient_Email: $scope.myEmployee, Description: $scope.pr, Suggestion: $scope.nr, Email: $scope.name, Rating: $scope.ratings[0].current }
 
             }).then(function (response) {
                 if (response.data.d > 0) {

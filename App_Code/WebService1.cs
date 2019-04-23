@@ -126,10 +126,11 @@ namespace Official
                 //    con.Close();
                 con.Open();
                // string Description = pr + " Improvement:    " + nr;
-                cmd = new SqlCommand("insert into tblFeedback(Subject, Recepient_Email,Description,Rating,Email)values(@Subject,@Recepient_Email,@Description,@Rating,@Email)", con);
+                cmd = new SqlCommand("insert into tblFeedback(Subject, Recepient_Email,Description,Suggestion,Rating,Email)values(@Subject,@Recepient_Email,@Description,@Suggestion,@Rating,@Email)", con);
                 cmd.Parameters.AddWithValue("@Subject", Subject);
                 cmd.Parameters.AddWithValue("@Recepient_Email", Recepient_Email);
                 cmd.Parameters.AddWithValue("@Description", Description);
+                cmd.Parameters.AddWithValue("@Suggestion", Suggestion);
                 cmd.Parameters.AddWithValue("@Rating", Rating);
 
                 cmd.Parameters.AddWithValue("@Email", Email);
@@ -200,20 +201,22 @@ namespace Official
                     string email1 = Session["stroreEmail"].ToString();
                     List<WebService1Class> listFeedback = new List<WebService1Class>();
 
-                    SqlCommand cmd = new SqlCommand("select f.Description,f.Rating,f.Subject,u.FirstName,u.LastName from tblFeedback f,tblUser u where f.Email=u.Email and f.Recepient_Email='" + email1 + "' ", con);
+                    SqlCommand cmd = new SqlCommand("select f.Description, f.Suggestion,f.Rating,f.Subject,u.FirstName,u.LastName from tblFeedback f,tblUser u where f.Email=u.Email and f.Recepient_Email='" + email1 + "' ", con);
                     // SqlCommand cmd = new SqlCommand("select * from tblFeedback ", con);
                     SqlDataReader sdr = cmd.ExecuteReader();
                     while (sdr.Read())
                     {
                         WebService1Class feedback = new WebService1Class();
                         feedback.Description = sdr["Description"].ToString();
-                        feedback.Rating = Convert.ToInt32(sdr["Rating"]);
+                        feedback.Suggestion = sdr["Suggestion"].ToString();
+                    feedback.Rating = Convert.ToInt32(sdr["Rating"]);
                         feedback.Subject = sdr["Subject"].ToString();
 
 
                         feedback.FirstName = sdr["FirstName"].ToString();
                         feedback.LastName = sdr["LastName"].ToString();
                         listFeedback.Add(feedback);
+                    
                     }
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     Context.Response.Write(js.Serialize(listFeedback));

@@ -88,6 +88,7 @@
 
                             <!--<li>
                                 <a href="">
+
                                     <i class="fa fa-envelope"></i>
                                     <span>Check my Feedbacks </span>
                                 </a>
@@ -111,7 +112,7 @@
                         <div class="row">
                             <div class="col-lg-9 main-chart">
                                 <div class="row mt">
-                                    <div ng-repeat="feedbackData in WebService1class">
+                                    <div ng-repeat="feedbackData in WebService1class.reverse() ">
                                         <div class="col-md-4 col-sm-4 mb">
 
                                             <br />
@@ -121,15 +122,21 @@
                                                 <div class="green-header">
                                                     <h5>{{feedbackData.Subject}}</h5>
                                                 </div>
-                                                <table style="color:white;text-align:left;font-size:12px;">
+                                                <table style="color:white;text-align:left;font-size:11px;">
                                                     <tr>
-                                                        <td>Feedback: &nbsp;</td>
+                                                        <td>Like: &nbsp;</td>
                                                         <td>{{feedbackData.Description}}</td>
                                                     </tr>
+                                                    
+                                                    <tr>
+                                                        <td>Suggestion: &nbsp;</td>
+                                                        <td>{{feedbackData.Suggestion}}</td>
+                                                    </tr>
+                                                    
                                                     <!--<tr>
-                <td>Subject:</td>
-                <td>{{feedbackData.Subject}}</td>
-            </tr>-->
+        <td>Subject:</td>
+        <td>{{feedbackData.Subject}}</td>
+    </tr>-->
                                                     <tr>
                                                         <td>Rating: &nbsp;</td>
                                                         <td>{{feedbackData.Rating}}</td>
@@ -140,9 +147,9 @@
                                                         <td>{{feedbackData.FirstName}}&nbsp;&nbsp;{{feedbackData.LastName}}</td>
                                                     </tr>
                                                     <!--<tr>
-                <td>LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>{{feedbackData.LastName}}</td>
-            </tr>-->
+        <td>LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>{{feedbackData.LastName}}</td>
+    </tr>-->
 
                                                 </table>
 

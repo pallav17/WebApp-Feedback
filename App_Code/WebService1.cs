@@ -39,6 +39,7 @@ namespace Official
 
         [WebMethod]
         public string HelloWorld()
+
         {
             return "Hello World";
         }
@@ -109,7 +110,7 @@ namespace Official
         [WebMethod(EnableSession = true)]
         public Boolean InsertFeedbackDataNew(string Subject, string Recepient_Email, string Description, string Suggestion, string Email, int Rating)
         {
-
+            SmtpClient smtp;
             // string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
 
             // string connectionstring = @"Data Source = WS001892; Initial Catalog = OfficialDb; User Id = feedback_sa; password = sa123; Integrated Security = True; MultipleActiveResultSets=True ";
@@ -125,7 +126,7 @@ namespace Official
                 //{
                 //    con.Close();
                 con.Open();
-               // string Description = pr + " Improvement:    " + nr;
+               //string Description = pr + " Improvement:    " + nr;
                 cmd = new SqlCommand("insert into tblFeedback(Subject, Recepient_Email,Description,Suggestion,Rating,Email)values(@Subject,@Recepient_Email,@Description,@Suggestion,@Rating,@Email)", con);
                 cmd.Parameters.AddWithValue("@Subject", Subject);
                 cmd.Parameters.AddWithValue("@Recepient_Email", Recepient_Email);
@@ -136,13 +137,34 @@ namespace Official
                 cmd.Parameters.AddWithValue("@Email", Email);
                 int i = 0;
                 i = cmd.ExecuteNonQuery();
-                if (i > 0)
+              
+                using (MailMessage mm = new MailMessage("FeedbackApp@schaeffler.com", Recepient_Email))
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    mm.Subject = "Hi There!! You have a new Feedback waiting";
+                    mm.Body = string.Format("You have a new Feedback on your name. \n Please login to the Feedback App and check it. Link to the App: https://bit.ly/2WeSzGY");
+
+                    mm.IsBodyHtml = true;
+                    smtp = new SmtpClient();
+                    smtp.Host = "smtp.na.ina.com";
+
+                    System.Net.NetworkCredential credentials = new System.Net.NetworkCredential();
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = credentials;
+                    smtp.Send(mm);
+                    //WriteToFile("Email sent successfully to: " + name1 + " " + email1);
+
+
+
+                    if (i > 0)
+                    {
+                        return true;
+                   
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
 
                 con.Close();

@@ -17,9 +17,13 @@
     //function callAtTimeout() {
     //    alert("Timeout occurred");
     //    $window.location.href = 'logout.html';
+
     //}
 
-   
+
+
+
+
 });
 
 

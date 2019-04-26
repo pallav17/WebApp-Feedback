@@ -25,5 +25,6 @@ namespace Official
         public string CreatedDate { get; set; }
         public int Rating { get; set; }
         public int eId { get; set; }
+        public string FeedbackDate { get; set; }
     }
 }

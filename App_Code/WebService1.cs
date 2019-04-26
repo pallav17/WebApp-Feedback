@@ -108,9 +108,10 @@ namespace Official
 
 
         [WebMethod(EnableSession = true)]
-        public Boolean InsertFeedbackDataNew(string Subject, string Recepient_Email, string Description, string Suggestion, string Email, int Rating)
+        public Boolean InsertFeedbackDataNew(string Subject, string Recepient_Email, string Description, string Suggestion, string Email, int Rating )
         {
             SmtpClient smtp;
+           
             // string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
 
             // string connectionstring = @"Data Source = WS001892; Initial Catalog = OfficialDb; User Id = feedback_sa; password = sa123; Integrated Security = True; MultipleActiveResultSets=True ";
@@ -126,8 +127,11 @@ namespace Official
                 //{
                 //    con.Close();
                 con.Open();
-               //string Description = pr + " Improvement:    " + nr;
-                cmd = new SqlCommand("insert into tblFeedback(Subject, Recepient_Email,Description,Suggestion,Rating,Email)values(@Subject,@Recepient_Email,@Description,@Suggestion,@Rating,@Email)", con);
+
+               string FeedbackDate = DateTime.Today.ToString("MM/dd/yyyy");
+               string FeedbackTime = DateTime.Now.ToString("HH:mm:ss");
+                //string Description = pr + " Improvement:    " + nr;
+                cmd = new SqlCommand("insert into tblFeedback(Subject, Recepient_Email,Description,Suggestion,Rating,Email, FeedbackDate, FeedbackTime)values(@Subject,@Recepient_Email,@Description,@Suggestion,@Rating,@Email,'"+FeedbackDate+ "','" + FeedbackTime + "'  )", con);
                 cmd.Parameters.AddWithValue("@Subject", Subject);
                 cmd.Parameters.AddWithValue("@Recepient_Email", Recepient_Email);
                 cmd.Parameters.AddWithValue("@Description", Description);
@@ -140,9 +144,8 @@ namespace Official
               
                 using (MailMessage mm = new MailMessage("FeedbackApp@schaeffler.com", Recepient_Email))
                 {
-                    mm.Subject = "Hi There!! You have a new Feedback waiting";
-                    mm.Body = string.Format("You have a new Feedback on your name. \n Please login to the Feedback App and check it. Link to the App: https://bit.ly/2WeSzGY");
-
+                    mm.Subject = "You have a new Feedback waiting";
+                    mm.Body = string.Format("Hello There, <br /> You have a new Feedback on your name. Please login to the Feedback App and check it. Link to the App: https://bit.ly/2WeSzGY");
                     mm.IsBodyHtml = true;
                     smtp = new SmtpClient();
                     smtp.Host = "smtp.na.ina.com";
@@ -223,7 +226,7 @@ namespace Official
                     string email1 = Session["stroreEmail"].ToString();
                     List<WebService1Class> listFeedback = new List<WebService1Class>();
 
-                    SqlCommand cmd = new SqlCommand("select f.Description, f.Suggestion,f.Rating,f.Subject,u.FirstName,u.LastName from tblFeedback f,tblUser u where f.Email=u.Email and f.Recepient_Email='" + email1 + "' ", con);
+                    SqlCommand cmd = new SqlCommand("select f.Description, f.FeedbackDate, f.Suggestion,f.Rating,f.Subject,u.FirstName,u.LastName from tblFeedback f,tblUser u where f.Email=u.Email and f.Recepient_Email='" + email1 + "' ", con);
                     // SqlCommand cmd = new SqlCommand("select * from tblFeedback ", con);
                     SqlDataReader sdr = cmd.ExecuteReader();
                     while (sdr.Read())
@@ -233,9 +236,10 @@ namespace Official
                         feedback.Suggestion = sdr["Suggestion"].ToString();
                     feedback.Rating = Convert.ToInt32(sdr["Rating"]);
                         feedback.Subject = sdr["Subject"].ToString();
+                       feedback.FeedbackDate = sdr["FeedbackDate"].ToString();
 
 
-                        feedback.FirstName = sdr["FirstName"].ToString();
+                    feedback.FirstName = sdr["FirstName"].ToString();
                         feedback.LastName = sdr["LastName"].ToString();
                         listFeedback.Add(feedback);
                     

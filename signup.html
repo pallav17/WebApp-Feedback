@@ -13,9 +13,9 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>Schaeffler Group North America</title>
-   
+
     <!-- Favicons -->
-   <link href="img/favicon.png" rel="icon">
+    <link href="img/favicon.png" rel="icon">
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
     <!-- Bootstrap core CSS -->
 
@@ -30,6 +30,7 @@
     <link href="css/style-responsive.css" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
     <script type="text/javascript" src="Scripts/signup.js"></script>
+    <script src="Scripts/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
     <!-- =======================================================
@@ -65,13 +66,13 @@
 
                     <div class="login-wrap">
 
-                        <input type="text" class="form-control" placeholder="First name" name="name" ng-model="FName" autofocus pattern="[a-zA-Z]+" required />
+                        <input type="text" class="form-control" placeholder="First name" name="name" ng-model="FName" autofocus pattern="[a-zA-Z ]+" required />
                         <span ng-show="myForm.name.$error.pattern" style="color:red;">Not a valid Name!</span>
 
                         <span ng-show="myForm.name.$touched && myForm.name.$invalid" style="color:red;">Required Field.</span>
                         <br />
 
-                        <input type="text" class="form-control" placeholder="Last name" name="lname" ng-model="LName" pattern="[a-zA-z]+" required />
+                        <input type="text" class="form-control" placeholder="Last name" name="lname" ng-model="LName" pattern="[a-zA-z ]+" required />
 
                         <span ng-show="myForm.lname.$error.pattern" style="color:red;">Not a valid Last Name!</span>
 

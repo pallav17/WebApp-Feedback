@@ -75,7 +75,9 @@
 
                         <h5 class="centered">{{name}}</h5>
 
-                      
+
+                        <br />
+
                         <li>
                             <a href="InsertFeedback.html">
                                 <i class="fa fa-pencil"></i>
@@ -84,12 +86,12 @@
                         </li>
 
                         <!--<li>
-                    <a href="">
+        <a href="">
 
-                        <i class="fa fa-envelope"></i>
-                        <span>Check my Feedbacks </span>
-                    </a>
-                </li>-->
+            <i class="fa fa-envelope"></i>
+            <span>Check my Feedbacks </span>
+        </a>
+    </li>-->
 
 
                     </ul>
@@ -114,98 +116,99 @@
                             <div class="col-lg-9 main-chart">
                                 <div class="row mt">
                                     <div ng-repeat="feedbackData in WebService1class.reverse() ">
-                                        <div class="col-md-4 col-sm-4 mb">
+                                        <!--<div ng-repeat="feedbackData in WebService1class.reverse() |limitTo:1 ">-->
+                                            <div class="col-md-4 col-sm-4 mb">
 
-                                            <br />
-                                            <br />
-                                            <!-- REVENUE PANEL -->
-                                            <div class="green-panel pn">
-                                                <div class="green-header">
-                                                    <h5>{{feedbackData.Subject}}</h5>
+                                                <br />
+                                                <br />
+                                                <!-- REVENUE PANEL -->
+                                                <div class="green-panel pn">
+                                                    <div class="green-header">
+                                                        <h5>{{feedbackData.Subject}}</h5>
+                                                    </div>
+                                                    <table style="color:white;text-align:left;font-size:11px;">
+                                                        <tr>
+                                                            <td>Like: &nbsp;</td>
+                                                            <td>{{feedbackData.Description}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Suggestion: &nbsp;</td>
+                                                            <td>{{feedbackData.Suggestion}}</td>
+                                                        </tr>
+
+                                                        <!--<tr>
+
+                        <td>Subject:</td>
+
+                        <td>{{feedbackData.Subject}}</td>
+                    </tr>-->
+                                                        <tr>
+                                                            <td>Rating: &nbsp;</td>
+                                                            <td>{{feedbackData.Rating}}</td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                        <tr>
+                                                            <td>Sender: &nbsp;</td>
+                                                            <td>{{feedbackData.FirstName}}&nbsp;&nbsp;{{feedbackData.LastName}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Feedback Date: &nbsp;</td>
+                                                            <td>{{feedbackData.FeedbackDate}}</td>
+                                                        </tr>
+                                                        <!--<tr>
+                        <td>LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>{{feedbackData.LastName}}</td>
+                    </tr>-->
+
+                                                    </table>
+
                                                 </div>
-                                                <table style="color:white;text-align:left;font-size:11px;">
-                                                    <tr>
-                                                        <td>Like: &nbsp;</td>
-                                                        <td>{{feedbackData.Description}}</td>
-                                                    </tr>
+                                                <!-- From W3 -->
+                                                <!--<div class="w3-card-4" style="width:100%;">
+                <header class="w3-container w3-grey" style="background:#b2ce58;">
+                    <h4>{{feedbackData.Subject}}</h4>
+                </header>
 
-                                                    <tr>
-                                                        <td>Suggestion: &nbsp;</td>
-                                                        <td>{{feedbackData.Suggestion}}</td>
-                                                    </tr>
+                <div class="w3-container" style="background:#00893d;">
+                    <table style="color:white;text-align:left;font-size:12px;">
+                        <tr>
+                            <td>Feedbacks:</td>
+                            <td>{{feedbackData.Description}}</td>
+                        </tr>
+                        <tr>
+                            <td>Subject:</td>
+                            <td>{{feedbackData.Subject}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rating</td>
+                            <td>{{feedbackData.Rating}}</td>
+                        </tr>
 
-                                                    <!--<tr>
+                        <tr>
+                            <td>FirstName:</td>
+                            <td>{{feedbackData.FirstName}}</td>
+                        </tr>
+                        <tr>
+                            <td>LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>{{feedbackData.LastName}}</td>
+                        </tr>
 
-                                                <td>Subject:</td>
+                    </table>
+                </div>
 
-                                                <td>{{feedbackData.Subject}}</td>
-                                            </tr>-->
-                                                    <tr>
-                                                        <td>Rating: &nbsp;</td>
-                                                        <td>{{feedbackData.Rating}}</td>
-                                                    </tr>
-                                                    <tr></tr>
-                                                    <tr>
-                                                        <td>Sender: &nbsp;</td>
-                                                        <td>{{feedbackData.FirstName}}&nbsp;&nbsp;{{feedbackData.LastName}}</td>
-                                                    </tr>
+                <footer class="w3-container w3-blue">
+                    <h5>Footer</h5>
+                </footer>
+            </div>-->
+                                                <!-- From W3 -->
 
-                                                    <tr>
-                                                        <td>Feedback Date: &nbsp;</td>
-                                                        <td>{{feedbackData.FeedbackDate}}</td>
-                                                    </tr>
-                                                    <!--<tr>
-                                                <td>LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                <td>{{feedbackData.LastName}}</td>
-                                            </tr>-->
 
-                                                </table>
 
                                             </div>
-                                            <!-- From W3 -->
-                                            <!--<div class="w3-card-4" style="width:100%;">
-                                        <header class="w3-container w3-grey" style="background:#b2ce58;">
-                                            <h4>{{feedbackData.Subject}}</h4>
-                                        </header>
-
-                                        <div class="w3-container" style="background:#00893d;">
-                                            <table style="color:white;text-align:left;font-size:12px;">
-                                                <tr>
-                                                    <td>Feedbacks:</td>
-                                                    <td>{{feedbackData.Description}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Subject:</td>
-                                                    <td>{{feedbackData.Subject}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rating</td>
-                                                    <td>{{feedbackData.Rating}}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>FirstName:</td>
-                                                    <td>{{feedbackData.FirstName}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>LastName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                    <td>{{feedbackData.LastName}}</td>
-                                                </tr>
-
-                                            </table>
-                                        </div>
-
-                                        <footer class="w3-container w3-blue">
-                                            <h5>Footer</h5>
-                                        </footer>
-                                    </div>-->
-                                            <!-- From W3 -->
-
-
-
                                         </div>
                                     </div>
-                                </div>
                                 <!-- /col-md-4 -->
                             </div>
                         </div>
@@ -216,7 +219,7 @@
             <!--main content end-->
             <!--footer start-->
             <!--footer end-->
-            /s
+            
         </div>
     </section>
 

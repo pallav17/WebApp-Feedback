@@ -4,7 +4,7 @@ app.controller("MyController", function ($scope, $http, $window) {
 
     
 
-
+    alert("Please make sure you are have an immediate access to your Schaeffler Email before initiating registeration.")
     $scope.Save = function () {
         if ($scope.FName == undefined || $scope.LName == undefined || $scope.office == undefined || $scope.email == undefined || $scope.password == undefined || $scope.cpassword == undefined)
             alert('Please fill the required details')

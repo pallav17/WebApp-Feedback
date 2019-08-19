@@ -214,6 +214,59 @@ namespace Official
     }
 
         [WebMethod(EnableSession = true)]
+        public void TokenTest2AU(string Email, string Token)
+        {
+
+            // string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+
+                // string email1 = Session["stroreEmail"].ToString();
+
+                string email1 = Email;
+                string Error = "Sorry You are not an authorized user";
+
+
+                List<WebService1class> listUser = new List<WebService1class>();
+                SqlCommand cmd = new SqlCommand("select FirstName,LastName,Office,Email,PhoneNo,IsActive from tblUser where IsActive='True' and Email !='" + email1 + "'", con);
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    WebService1class user = new WebService1class();
+                    user.FirstName = sdr["FirstName"].ToString();
+                    user.LastName = sdr["LastName"].ToString();
+                    user.Office = sdr["Office"].ToString();
+                    user.Email = sdr["Email"].ToString();
+                    user.PhoneNo = sdr["PhoneNo"].ToString();
+                    user.IsActive = Convert.ToBoolean(sdr["IsActive"]);
+                    listUser.Add(user);
+                }
+
+                if (Token == "af9bce267343ad72bd6abe7aff58edf2")
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    Context.Response.Write(js.Serialize(listUser));
+                    con.Close();
+                }
+
+                else
+                {
+                    Context.Response.Write(Error);
+                    con.Close();
+                }
+
+
+
+            }
+
+
+        }
+
+
+
+
+        [WebMethod(EnableSession = true)]
         public void GetFeedBackDetailNew()
         {
             
@@ -249,6 +302,65 @@ namespace Official
                     con.Close();
                 }    
         }
+
+
+
+        [WebMethod(EnableSession = true)]
+        public void TokenTest1DF(string Email, string Token)
+        {
+
+            // string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+
+
+                con.Open();
+                //string email1 = Session["stroreEmail"].ToString();
+
+                string email1 = Email;
+                string Error = "Sorry You are not an authorized user";
+           
+                List<WebService1Class> listFeedback = new List<WebService1Class>();
+
+                SqlCommand cmd = new SqlCommand("select f.Description, f.FeedbackDate, f.Suggestion,f.Rating,f.Subject,u.FirstName,u.LastName from tblFeedback f,tblUser u where f.Email=u.Email and f.Recepient_Email='" + email1 + "' ", con);
+                // SqlCommand cmd = new SqlCommand("select * from tblFeedback ", con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    WebService1Class feedback = new WebService1Class();
+                    feedback.Description = sdr["Description"].ToString();
+                    feedback.Suggestion = sdr["Suggestion"].ToString();
+                    feedback.Rating = Convert.ToInt32(sdr["Rating"]);
+                    feedback.Subject = sdr["Subject"].ToString();
+                    feedback.FeedbackDate = sdr["FeedbackDate"].ToString();
+
+
+                    feedback.FirstName = sdr["FirstName"].ToString();
+                    feedback.LastName = sdr["LastName"].ToString();
+                    listFeedback.Add(feedback);
+
+                }
+
+                if ( Token == "af9bce267343ad72bd6abe7aff58edf2" )
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    Context.Response.Write(js.Serialize(listFeedback));
+                    con.Close();
+                }
+
+                else
+                {
+                    Context.Response.Write(Error);
+                    con.Close();
+                }
+  
+
+               
+            }
+
+            
+        }
+
 
         [WebMethod]
         public string Otp()
@@ -293,6 +405,7 @@ namespace Official
         [WebMethod]
         public Boolean InsertUserData(string FirstName, string LastName, string Office, string Email, string Password, Boolean IsActive, Boolean IsDelete)
         {
+           
           //  string connectionstring = @"Data Source = P01156006; Initial Catalog = practice; Integrated Security = SSPI";
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -324,6 +437,8 @@ namespace Official
                         smtp.Credentials = credentials;
                         smtp.Send(mm);
                         //WriteToFile("Email sent successfully to: " + name1 + " " + email1);
+                        
+                        
                     }
                     con.Close();
                     con.Open();
@@ -331,6 +446,7 @@ namespace Official
                     
                     //SqlCommand cmd = new SqlCommand("insert into tblUser(FirstName,LastName,Office,Email,Password,PhoneNo,OtpNo,IsActive,IsDelete)values(@FirstName,@LastName,@Office,@Email,@Password,@PhoneNo,'" + AccessOtp.ToString() + "',@IsActive,@IsDelete)", con);
                     SqlCommand cmd = new SqlCommand("insert into tblUser(FirstName,LastName,Office,Email,Password,OtpNo,IsActive,IsDelete)values(@FirstName,@LastName,@Office,@Email,@Password,'" + AccessOtp.ToString() + "',@IsActive,@IsDelete)", con);
+                  //  SqlCommand cmd = new SqlCommand("insert into tblUser(FirstName,LastName,Office,Email,Password,OtpNo,IsActive,IsDelete)values(@FirstName,@LastName,@Office,@Email,@Password,'" + AccessOtp.ToString() + "',' False ',@IsDelete)", con);
 
                     cmd.Parameters.AddWithValue("@FirstName", FirstName);
                     cmd.Parameters.AddWithValue("@LastName", LastName);

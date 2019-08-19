@@ -17,7 +17,7 @@ myapp.controller("Mycontroller", function ($scope, $http, $window) {
 
             }).then(function (response) {
                 if (response.data.d > 0) {
-                    alert("Logged in Successfully.");
+                   // alert("Logged in Successfully.");
                    // localStorage.setItem("key", $scope.email);
                     localStorage.setItem("key", email);
                    
